@@ -1,0 +1,38 @@
+
+
+.container {
+    height: 95vh;
+    
+}
+
+.settings {
+    text-align: center;
+    height: 30vh;
+}
+
+.counter {
+    text-align: center;
+    height: 65vh;
+}
+
+.ready {
+    background-color: rgb(105, 240, 174);
+}
+
+.starting {
+    background-color: #ffdd00;
+}
+
+.counting {
+    background-color: red;
+}
+
+.rest {
+    background-color: blue;
+}
+
+.counterBtnSize {
+    height: 20vh;
+    width: 20vh;
+    font-size: xx-large;
+}
