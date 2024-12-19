@@ -1,2 +1,0 @@
-git-changelog -io CHANGELOG.md -c angular
-git add CHANGELOG.md
