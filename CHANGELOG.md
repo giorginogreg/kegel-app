@@ -2,14 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [1.0.0](https://github.com/giorginogreg/Kegel-app/compare/v1.1.2...v1.0.0) (2024-12-19)
+### [1.0.1](https://github.com/giorginogreg/Kegel-app/compare/v1.1.2...v1.0.1) (2024-12-19)
 
-## [2.0.0](https://github.com/giorginogreg/Kegel-app/compare/v1.0.0...v2.0.0) (2024-12-19)
 
-## [1.0.0](https://github.com/giorginogreg/Kegel-app/compare/v1.1.2...v1.0.0) (2024-12-19)
+### Documentation
 
-## 1.1.0 (2024-12-19)
+* removed unnecessary versions from chglog ([b0f26dc](https://github.com/giorginogreg/Kegel-app/commit/b0f26dc46acf896728472f83fa903b59163f73c6))
 
+## [1.0.0](https://github.com/giorginogreg/Kegel-app) (2024-12-19)
 
 ### Features
 
