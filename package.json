@@ -1,6 +1,6 @@
 {
   "name": "kegel-app",
-  "version": "1.0.4",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,6 +9,7 @@
     "test": "ng test",
     "prepare": "husky",
     "release": "standard-version",
+    "release-as": "npm run release -- --release-as",
     "release-major": "npm run release -- --release-as major"
   },
   "private": true,
@@ -46,5 +47,10 @@
     "karma-jasmine-html-reporter": "~2.0.0",
     "standard-version": "^9.5.0",
     "typescript": "5.6.3"
+  },
+  "standard-version": {
+    "skip": {
+      "tag": true
+    }
   }
 }
