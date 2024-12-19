@@ -1,1 +1,1 @@
-echo "Pre-commit script"
+git-changelog -io CHANGELOG.md -c angular
