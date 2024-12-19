@@ -1,6 +1,6 @@
 {
   "name": "kegel-app",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -36,6 +36,7 @@
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
     "@types/jasmine": "~4.0.0",
+    "conventional-changelog-angular": "^8.0.0",
     "husky": "^9.1.7",
     "jasmine-core": "~4.2.0",
     "karma": "~6.4.0",
