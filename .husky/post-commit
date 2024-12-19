@@ -1,1 +1,1 @@
-git-changelog
+git-changelog -io CHANGELOG.md -c angular

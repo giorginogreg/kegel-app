@@ -1,16 +1,21 @@
 <!-- insertion marker -->
-## [0.0.1](https://github.com/giorginogreg/Kegel-app/releases/tag/0.0.1) - 2024-12-19
+## Unreleased
 
-<small>[Compare with first commit](https://github.com/giorginogreg/Kegel-app/compare/f216d44ebcbac40d8e417c370c44f0dac500a009...0.0.1)</small>
+<small>[Compare with latest](https://github.com/giorginogreg/Kegel-app/compare/f216d44ebcbac40d8e417c370c44f0dac500a009...HEAD)</small>
+
+### Features
+
+- added new post commit script ([b5ae432](https://github.com/giorginogreg/Kegel-app/commit/b5ae432c5dd0081e3ea977e751c31f6b71424fad) by ggadt).
+- added Husky and commit-msg linting ([0688901](https://github.com/giorginogreg/Kegel-app/commit/0688901812b56de9086e5450649263a818d4e219) by ggadt).
 
 ### Code Refactoring
 
-- upgraded ng to v19 ([5b9d4f3](https://github.com/giorginogreg/Kegel-app/commit/5b9d4f3ca53b406a538042c63dabf6243c7b8db7) by Gregorio Giorgino [ADT]).
-- upgraded ng to v18 with Material lib ([4881619](https://github.com/giorginogreg/Kegel-app/commit/48816194738f8bb0315ee5e94516f8481ac6ea01) by Gregorio Giorgino [ADT]).
-- upgraded Material to v17 ([deeffca](https://github.com/giorginogreg/Kegel-app/commit/deeffca87aacff8048279a03d52e83a45b536359) by Gregorio Giorgino [ADT]).
-- upgraded ng to v17 ([df16670](https://github.com/giorginogreg/Kegel-app/commit/df166702a651a936f5ff4ead76605a7710884b97) by Gregorio Giorgino [ADT]).
-- upgraded TS to ^v5.1.x ([825a63b](https://github.com/giorginogreg/Kegel-app/commit/825a63b515f1dc70337a694bd589c795855e5df3) by Gregorio Giorgino [ADT]).
-- upgraded TS to v5.7.2 (latest) ([b37fffa](https://github.com/giorginogreg/Kegel-app/commit/b37fffa83ddf010ac63ab4cf3d39778a71b6c104) by Gregorio Giorgino [ADT]).
-- upgraded material to v16 ([ec2629e](https://github.com/giorginogreg/Kegel-app/commit/ec2629eef9df16ab3d07a751c288921d5ffd0b78) by Gregorio Giorgino [ADT]).
-- upgraded material to v15 ([24e679f](https://github.com/giorginogreg/Kegel-app/commit/24e679fb77b0bd71428b259bc26ee32af0898d4a) by Gregorio Giorgino [ADT]).
-- Upgraded to ng v16 ([fd7c08f](https://github.com/giorginogreg/Kegel-app/commit/fd7c08fd24d7267509a85f7936511d2380307f8b) by Gregorio Giorgino [ADT]).
+- upgraded ng to v19 ([d43db5b](https://github.com/giorginogreg/Kegel-app/commit/d43db5b0fea63bf7d1816f39438003eac9f13ab6) by ggadt).
+- upgraded ng to v18 with Material lib ([eef5501](https://github.com/giorginogreg/Kegel-app/commit/eef55012f1390b3b5c3a7b82b0c076e6ff2fd3b6) by ggadt).
+- upgraded Material to v17 ([e1b94f1](https://github.com/giorginogreg/Kegel-app/commit/e1b94f1eb27b559268e5fb5bff88d886293a7c67) by ggadt).
+- upgraded ng to v17 ([09bc746](https://github.com/giorginogreg/Kegel-app/commit/09bc746ad2239e49ab9134df245edc846fe610f0) by ggadt).
+- upgraded TS to ^v5.1.x ([320b0bd](https://github.com/giorginogreg/Kegel-app/commit/320b0bdb28f15b8adb07fce1e56f4c7e72df7633) by ggadt).
+- upgraded TS to v5.7.2 (latest) ([c17ecfa](https://github.com/giorginogreg/Kegel-app/commit/c17ecfa800248bd4f2769698eb7c2fba216e5d27) by ggadt).
+- upgraded material to v16 ([96bbfeb](https://github.com/giorginogreg/Kegel-app/commit/96bbfeb3165ee1ecedf8a008efb54e9cdbccb636) by ggadt).
+- upgraded material to v15 ([3ab00fe](https://github.com/giorginogreg/Kegel-app/commit/3ab00fe1f04b1eff5e033775164898ee8063236b) by ggadt).
+- Upgraded to ng v16 ([ddba6a0](https://github.com/giorginogreg/Kegel-app/commit/ddba6a00ff68257d42ff133d966f230d4dd990a0) by ggadt).
