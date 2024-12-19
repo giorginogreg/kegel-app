@@ -1,6 +1,6 @@
-# KegelApp
+# Kegel Exercises App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.2.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 19.0.5
 
 ## Install dependencies
 First step first: run `npm i` to install deps
