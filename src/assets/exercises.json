@@ -1,18 +1,21 @@
 {
-  "esercises": [
+  "exercises": [
     {
       "name": "Squeeze & Hold!",
+      "code": "S_H",
       "phases": [
         {
           "message": "Hold!",
           "status": 100,
           "transition": 0.1,
+          "duration": 5,
           "comments": " in 0.1 secondi raggiunge dal valore preced. il valore 100"
         }
       ]
     },
     {
       "name": "Front Clamp",
+      "code": "FC",
       "description": "",
       "phases": [
         {
@@ -32,6 +35,7 @@
     },
     {
       "name": "Reverse Clamp",
+      "code": "RC",
       "description": "",
       "phases": [
         {
@@ -51,6 +55,7 @@
     },
     {
       "name": "Trembling",
+      "code": "TB",
       "description": "",
       "phases": [
         {
