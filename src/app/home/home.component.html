@@ -9,12 +9,14 @@
         <div class="col"></div>
     </div>
     <div id="counterRow" class="row">
-        <div class="col"></div>
+        <div class="col "></div>
 
-        <div id="counter" class="counter col-10">
+        <div fxLayout="column" id="counter" class="counter col-10">
             <button mat-fab id="counterBtn" class="counterBtnSize {{counterClass}}" color="accent" (click)="counterBtnClick()">{{ counterBtnText }}</button>
-        </div>
+            <div *ngIf="currentExercise" class="my-3">Exercise name: {{currentExercise.name}}</div>
 
+        </div>
+        
         <div class="col"></div>
     </div>
 </div>

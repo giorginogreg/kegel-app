@@ -1,136 +1,143 @@
 import { Component, OnInit } from '@angular/core';
 import { Status } from '../../enums/status';
-import {Title} from "@angular/platform-browser";
-
+import { Title } from '@angular/platform-browser';
+import * as defaultSerie from '../../assets/series/defaultSerie.json';
+import { Exercise } from '../models/exercise';
+import exercises from '../../assets/exercises.json';
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss'],
-    standalone: false
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
+  standalone: false,
 })
 export class HomeComponent implements OnInit {
-    starting = new Audio();
-    tick = new Audio();
-    counterClass = "ready";
-    counterBtnText = "Start";
+  starting = new Audio();
+  tick = new Audio();
+  counterClass = 'ready';
+  counterBtnText = 'Start';
 
-    state = Status.Ready;
+  state = Status.Ready;
 
-    sets = 5;
-    currentSet = 1;
-    seconds = 10;
-    rest = 5;
+  sets = 5;
+  currentSet = 1;
 
-    constructor(private titleService:Title) { }
+  currentExercise: Exercise;
 
-    ngOnInit(): void {
-        this.starting.src = "../../../assets/audio/starting.mp3";
-        this.tick.src = "../../../assets/audio/tick.mp3";
-        this.starting.load();
-        this.tick.load();
+  exercises: Exercise[] = [];
+  exerciseIndex = 0;
+
+  sleep = (ms: number) => {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  };
+
+  constructor(private titleService: Title) {
+    // Per ogni esercizio nella defaultSerie mi creo un oggetto esercizio a partire dal codice
+    // Carico la defaultSerie
+    defaultSerie.exercises.forEach((exercise) => {
+      this.exercises.push(this.findExerciseByCode(exercise));
+    });
+  }
+
+  ngOnInit(): void {}
+
+  async counterBtnClick() {
+    switch (this.state) {
+      case Status.Ready: {
+        this.state = Status.Starting;
+        this.counterClass = 'starting';
+        this.starting.play();
+        let countdown = 3;
+
+        this.counterBtnText = countdown.toString();
+        this.titleService.setTitle(this.counterBtnText);
+
+        //let intervalId = setInterval(() => {
+        while (countdown >= 0) {
+          this.counterBtnText = countdown.toString();
+          this.titleService.setTitle(this.counterBtnText);
+
+          if (countdown === 0) {
+            this.state = Status.Counting;
+            this.countAction();
+            //  clearInterval(intervalId);
+          }
+          countdown--;
+          await this.sleep(1000);
+        }
+        //}, 1000);
+        break;
+      }
+
+      case Status.Starting || Status.Counting || Status.Resting: {
+        this.state = Status.Ready;
+        break;
+      }
     }
+  }
 
-    counterBtnClick(): void {
-        switch(this.state) {
+  async countAction() {
+    while (this.exerciseIndex < this.exercises.length) {
+      switch (this.state) {
+        case Status.Starting: {
+          this.state = Status.Ready;
+          break;
+        }
 
-            case Status.Ready: {
-                this.state = Status.Starting;
-                this.counterClass = "starting";
-                this.starting.play();
-                let num = 3;
-                
-                this.counterBtnText = num.toString();   
+        case Status.Counting: {
+          this.currentExercise = this.exercises[this.exerciseIndex];
+          let cycles = this.currentExercise.cycles ?? 1;
+          for (let index = 0; index < cycles; index++) {
+            for (const phase of this.currentExercise.phases) {
+              let remainingSeconds = phase.duration ?? phase.transition;
+
+              while (remainingSeconds > 0) {
+                await this.sleep(1000);
+
+                // Attende 1 sec, poi...
+                remainingSeconds--;
+                this.counterBtnText = remainingSeconds.toString();
                 this.titleService.setTitle(this.counterBtnText);
-
-                let intervalId = setInterval(() => 
-                {
-                    num--;
-                    this.counterBtnText = num.toString();
-                    this.titleService.setTitle(this.counterBtnText);
-            
-                    if (num === 0) {
-                        this.state = Status.Counting;
-                        this.countAction();
-                        clearInterval(intervalId);
-                    }
-                }, 1000)
-                break;
+              }
             }
-
-            case Status.Starting: {
-                this.state = Status.Ready;
-                break;
-            }
-
-            case Status.Counting: {
-                this.state = Status.Ready;
-                break;
-            }
-
-            case Status.Resting: {
-                this.state = Status.Ready;
-                break;
-            }
+          }
+          this.state = Status.Resting;
+          this.exerciseIndex++;
+          break;
         }
-    }
 
-    countAction(): void {
-        switch(this.state) {
-            case Status.Starting: {
-                this.state = Status.Ready;
-                break;
-            }
+        case Status.Resting: {
+          this.counterBtnText = defaultSerie.defaultRestTime.toString();
+          this.counterClass = 'resting';
+          let countdown = defaultSerie.defaultRestTime;
 
-            case Status.Counting: {
-                this.counterBtnText = this.seconds.toString();
-                this.titleService.setTitle("Kegeling... " + this.counterBtnText + ". Set " + this.currentSet + " of " + this.sets);
-                this.counterClass = "counting"
+          while (countdown > 0) {
+            await this.sleep(1000);
+            countdown--;
+            this.counterBtnText = countdown.toString();
+          }
 
-                let countdown = this.seconds;
-                this.tick.play();
-
-                let intervalId = setInterval(() => 
-                {
-                    countdown--;
-                    this.tick.play();
-                    this.counterBtnText = countdown.toString();
-                    this.titleService.setTitle("Kegeling... " + this.counterBtnText + ". Set " + this.currentSet + " of " + this.sets);
-                
-                    if (countdown === 0) {
-                        this.state = Status.Resting;
-                        clearInterval(intervalId);
-                        this.countAction();
-                    }
-                }, 1000)
-                break;
-            }
-
-            case Status.Resting: {
-                this.counterBtnText = this.rest.toString();
-                this.titleService.setTitle("Resting... " + this.counterBtnText + ". Set " + this.currentSet + " of " + this.sets);
-                this.counterClass = "resting"
-
-                let countdown = this.rest;
-
-                let intervalId = setInterval(() => 
-                {
-                    countdown--;
-                    this.counterBtnText = countdown.toString();
-                    this.titleService.setTitle("Resting... " + this.counterBtnText + ". Set " + this.currentSet + " of " + this.sets);
-                
-                    if (countdown === 0) {
-                        this.currentSet++;
-                        if (this.currentSet > this.sets) {
-                            this.state = Status.Ready;
-                        } else {
-                            this.state = Status.Counting;
-                        }
-                        clearInterval(intervalId);
-                        this.countAction();
-                    }
-                }, 1000)
-                break;
-            }
+          //this.currentSet++;
+          //this.state =
+          //  this.currentSet > this.sets ? Status.Ready : Status.Counting;
+          this.state = Status.Counting;
+          break;
         }
+      }
     }
+    this.state = Status.Ready;
+  }
+
+  findExerciseByCode(code: string): Exercise {
+    const allExercises: Exercise[] = exercises.exercises;
+    let maybeExercise = allExercises.filter(
+      (exercise) => exercise.code === code
+    );
+    const exercise = new Exercise();
+    exercise.code = maybeExercise[0]['code'];
+    exercise.name = maybeExercise[0]['name'];
+    exercise.phases = maybeExercise[0]['phases'];
+    exercise.cycles = maybeExercise[0]['cycles'];
+
+    return exercise;
+  }
 }
