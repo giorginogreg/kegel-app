@@ -4,3 +4,8 @@ export enum Status {
     Counting,
     Resting
 };
+
+export enum PhaseStatus {
+  Release = 0,
+  Hold = 100,
+}
