@@ -15,13 +15,13 @@ export class HomeComponent implements OnInit {
   tick = new Audio();
   counterClass = 'ready';
   counterBtnText = 'Start';
-
+  public Status = Status;
   state = Status.Ready;
 
   sets = 5;
   currentSet = 1;
 
-  currentExercise: Exercise;
+  currentExercise: Exercise | null;
 
   exercises: Exercise[] = [];
   exerciseIndex = 0;
@@ -45,86 +45,66 @@ export class HomeComponent implements OnInit {
       case Status.Ready: {
         this.state = Status.Starting;
         this.counterClass = 'starting';
-        this.starting.play();
+        //this.starting.play();
         let countdown = 3;
 
         this.counterBtnText = countdown.toString();
-        this.titleService.setTitle(this.counterBtnText);
 
         //let intervalId = setInterval(() => {
-        while (countdown >= 0) {
+        while (countdown > 0) {
           this.counterBtnText = countdown.toString();
-          this.titleService.setTitle(this.counterBtnText);
-
-          if (countdown === 0) {
-            this.state = Status.Counting;
-            this.countAction();
-            //  clearInterval(intervalId);
-          }
           countdown--;
           await this.sleep(1000);
         }
-        //}, 1000);
+        this.state = Status.Counting; // Exercise
         break;
       }
+      case Status.Counting: {
+        this.currentExercise = this.exercises[this.exerciseIndex];
+        this.counterClass = 'counting';
 
-      case Status.Starting || Status.Counting || Status.Resting: {
-        this.state = Status.Ready;
-        break;
-      }
-    }
-  }
+        let cycles = this.currentExercise.cycles ?? 1;
+        for (let index = 0; index < cycles; index++) {
+          for (const phase of this.currentExercise.phases) {
+            let remainingSeconds = phase.duration ?? phase.transition;
 
-  async countAction() {
-    while (this.exerciseIndex < this.exercises.length) {
-      switch (this.state) {
-        case Status.Starting: {
-          this.state = Status.Ready;
-          break;
-        }
+            while (remainingSeconds > 0) {
+              this.counterBtnText = remainingSeconds.toString();
+              await this.sleep(1000);
 
-        case Status.Counting: {
-          this.currentExercise = this.exercises[this.exerciseIndex];
-          let cycles = this.currentExercise.cycles ?? 1;
-          for (let index = 0; index < cycles; index++) {
-            for (const phase of this.currentExercise.phases) {
-              let remainingSeconds = phase.duration ?? phase.transition;
-
-              while (remainingSeconds > 0) {
-                await this.sleep(1000);
-
-                // Attende 1 sec, poi...
-                remainingSeconds--;
-                this.counterBtnText = remainingSeconds.toString();
-                this.titleService.setTitle(this.counterBtnText);
-              }
+              // Attende 1 sec, poi...
+              remainingSeconds--;
             }
           }
-          this.state = Status.Resting;
-          this.exerciseIndex++;
-          break;
+        }
+        this.exerciseIndex++;
+        this.state =
+          this.exerciseIndex > this.exercises.length
+            ? Status.Ready
+            : Status.Resting;
+        if (this.state == Status.Ready) this.counterClass = 'ready'; // Finished serie
+
+        break;
+      }
+      case Status.Resting: {
+        this.counterBtnText = defaultSerie.defaultRestTime.toString();
+        this.counterClass = 'resting';
+        let countdown = defaultSerie.defaultRestTime;
+        this.currentExercise = null;
+        while (countdown > 0) {
+          await this.sleep(1000);
+          countdown--;
+          this.counterBtnText = countdown.toString();
         }
 
-        case Status.Resting: {
-          this.counterBtnText = defaultSerie.defaultRestTime.toString();
-          this.counterClass = 'resting';
-          let countdown = defaultSerie.defaultRestTime;
-
-          while (countdown > 0) {
-            await this.sleep(1000);
-            countdown--;
-            this.counterBtnText = countdown.toString();
-          }
-
-          //this.currentSet++;
-          //this.state =
-          //  this.currentSet > this.sets ? Status.Ready : Status.Counting;
-          this.state = Status.Counting;
-          break;
-        }
+        //this.currentSet++;
+        //this.state =
+        //  this.currentSet > this.sets ? Status.Ready : Status.Counting;
+        this.state = Status.Counting;
+        break;
       }
     }
-    this.state = Status.Ready;
+    if (this.state !== Status.Ready) this.counterBtnClick();
   }
 
   findExerciseByCode(code: string): Exercise {

@@ -13,8 +13,14 @@
 
         <div fxLayout="column" id="counter" class="counter col-10">
             <button mat-fab id="counterBtn" class="counterBtnSize {{counterClass}}" color="accent" (click)="counterBtnClick()">{{ counterBtnText }}</button>
-            <div *ngIf="currentExercise" class="my-3">Exercise name: {{currentExercise.name}}</div>
-
+            <div *ngIf="currentExercise; else pending" class="my-3">Exercise name: {{currentExercise.name}}</div>
+            <ng-template #pending>
+                <div *ngIf="state == Status.Resting">Resting...
+                    <div *ngIf="exerciseIndex <= exercises.length">
+                        Next exercise: {{exercises[exerciseIndex].name}}
+                    </div>
+                </div>
+            </ng-template>
         </div>
         
         <div class="col"></div>
