@@ -15,11 +15,9 @@ export class HomeComponent implements OnInit {
   tick = new Audio();
   counterClass = 'ready';
   counterBtnText = 'Start';
-  public Status = Status;
-  state = Status.Ready;
+  public Status = Status; // For letting the template recognize statuses
 
-  sets = 5;
-  currentSet = 1;
+  state = Status.Ready;
 
   currentExercise: Exercise | null;
 
@@ -40,6 +38,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {}
 
+
+  
   async counterBtnClick() {
     switch (this.state) {
       case Status.Ready: {
@@ -62,11 +62,10 @@ export class HomeComponent implements OnInit {
       case Status.Counting: {
         this.currentExercise = this.exercises[this.exerciseIndex];
         this.counterClass = 'counting';
-
         let cycles = this.currentExercise.cycles ?? 1;
+        let remainingSeconds = this.currentExercise.duration ?? this.currentExercise.phases.reduce((partialSum, phase) => partialSum + phase.transition, 0);
         for (let index = 0; index < cycles; index++) {
           for (const phase of this.currentExercise.phases) {
-            let remainingSeconds = phase.duration ?? phase.transition;
 
             while (remainingSeconds > 0) {
               this.counterBtnText = remainingSeconds.toString();
@@ -117,6 +116,7 @@ export class HomeComponent implements OnInit {
     exercise.name = maybeExercise[0]['name'];
     exercise.phases = maybeExercise[0]['phases'];
     exercise.cycles = maybeExercise[0]['cycles'];
+    exercise.duration = maybeExercise[0]['duration'];
 
     return exercise;
   }

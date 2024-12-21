@@ -3,12 +3,12 @@
     {
       "name": "Squeeze & Hold!",
       "code": "S_H",
+      "duration": 5,
       "phases": [
         {
           "message": "Hold!",
           "status": 100,
           "transition": 0.1,
-          "duration": 5,
           "comments": " in 0.1 secondi raggiunge dal valore preced. il valore 100"
         }
       ]
@@ -71,7 +71,7 @@
           "comments": " in <transition> secondi raggiunge dal valore preced. il valore <status>"
         }
       ],
-      "cycles": 3
+      "cycles": 15
     }
   ]
 }
