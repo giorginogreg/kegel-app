@@ -1,7 +1,7 @@
 {
   "configVersion": 1,
-  "timestamp": 1734982041404,
-  "index": "/index.html",
+  "timestamp": 1734982800787,
+  "index": "/kegel-app/index.html",
   "assetGroups": [
     {
       "name": "app",
@@ -11,12 +11,12 @@
         "ignoreVary": true
       },
       "urls": [
-        "/favicon.ico",
-        "/index.html",
-        "/main-WFKNUGVX.js",
-        "/manifest.webmanifest",
-        "/polyfills-EONH2QZO.js",
-        "/styles-UGAGV4NW.css"
+        "/kegel-app/favicon.ico",
+        "/kegel-app/index.html",
+        "/kegel-app/main-4OHCLMHL.js",
+        "/kegel-app/manifest.webmanifest",
+        "/kegel-app/polyfills-EONH2QZO.js",
+        "/kegel-app/styles-UGAGV4NW.css"
       ],
       "patterns": []
     },
@@ -33,12 +33,12 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/index.html": "7a7175ae9d7550cae852204189d02a5238953a8d",
-    "/main-WFKNUGVX.js": "8632eecd7a21a0508295c87df2a218ca7160f0d2",
-    "/manifest.webmanifest": "f42462c5efbb42464e27eeec6803874cbfd57b86",
-    "/polyfills-EONH2QZO.js": "e61db933651ae257d0c246b446cd1f470be08f78",
-    "/styles-UGAGV4NW.css": "603e7d66fb06b7591dca3785bc9d053fcb520bbf"
+    "/kegel-app/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "/kegel-app/index.html": "2f18c7191f9ced9310145bf06bb76984c5fcfbe0",
+    "/kegel-app/main-4OHCLMHL.js": "470fc6f9d56facac0b22fb6560455118bde1e4c7",
+    "/kegel-app/manifest.webmanifest": "f42462c5efbb42464e27eeec6803874cbfd57b86",
+    "/kegel-app/polyfills-EONH2QZO.js": "e61db933651ae257d0c246b446cd1f470be08f78",
+    "/kegel-app/styles-UGAGV4NW.css": "603e7d66fb06b7591dca3785bc9d053fcb520bbf"
   },
   "navigationUrls": [
     {
