@@ -1,0 +1,77 @@
+{
+  "exercises": [
+    {
+      "name": "Squeeze & Hold!",
+      "code": "S_H",
+      "duration": 5,
+      "phases": [
+        {
+          "message": "Hold!",
+          "status": 100,
+          "transition": 0.1,
+          "comments": " in 0.1 secondi raggiunge dal valore preced. il valore 100"
+        }
+      ]
+    },
+    {
+      "name": "Front Clamp",
+      "code": "FC",
+      "description": "",
+      "phases": [
+        {
+          "message": "Squeeze slowly",
+          "status": 100,
+          "transition": 4.5,
+          "comments": " in 5 secondi raggiunge dal valore preced. il valore 100"
+        },
+        {
+          "message": "Reset",
+          "status": 0,
+          "transition": 0.5,
+          "comments": " in mezzo secondo resetto e ricomincio"
+        }
+      ],
+      "cycles": 2
+    },
+    {
+      "name": "Reverse Clamp",
+      "code": "RC",
+      "description": "",
+      "phases": [
+        {
+          "message": "Squeeze",
+          "status": 100,
+          "transition": 0.5,
+          "comments": " in <transition> secondi raggiunge dal valore preced. il valore <status>"
+        },
+        {
+          "message": "Relax slowly",
+          "status": 0,
+          "transition": 4.5,
+          "comments": " in <transition> secondi raggiunge dal valore preced. il valore <status>"
+        }
+      ],
+      "cycles": 2
+    },
+    {
+      "name": "Trembling",
+      "code": "TB",
+      "description": "",
+      "phases": [
+        {
+          "message": "Contract",
+          "status": 100,
+          "transition": 1,
+          "comments": " in <transition> secondi raggiunge dal valore preced. il valore <status>"
+        },
+        {
+          "message": "Relax",
+          "status": 0,
+          "transition": 1,
+          "comments": " in <transition> secondi raggiunge dal valore preced. il valore <status>"
+        }
+      ],
+      "cycles": 5
+    }
+  ]
+}
