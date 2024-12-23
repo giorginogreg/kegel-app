@@ -25,6 +25,7 @@ export class CircleComponent {
 // Stato corrente del raggio
   currentRadius: number;
   animationFrame: number;
+  isAnimating: boolean;
 constructor() {}
 
   ngOnInit() {
@@ -56,6 +57,7 @@ constructor() {}
   }
 
   private animate = (duration: number, increase: boolean): void => {
+    if(this.isAnimating) return
     const targetRadius = increase ? this.endRadius : this.startRadius
     const startTime = performance.now();
       const initialRadius = this.currentRadius;
@@ -72,7 +74,7 @@ constructor() {}
 
         if (progress < 1) {
           this.animationFrame = requestAnimationFrame(step);
-        }
+        } else this.isAnimating = false;
       };
 
       cancelAnimationFrame(this.animationFrame); // Annulla eventuali animazioni precedenti
@@ -90,6 +92,9 @@ constructor() {}
   }
 
   clear() {
+    cancelAnimationFrame(this.animationFrame)
+    this.isAnimating= false
+    this.currentRadius = this.startRadius
     this.canvas.width = this.canvas.width
     this.canvas.height = this.canvas.height
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
