@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration production",
-    "publish": "angular-cli-ghpages --dir=dist/kegel-app/browser",
+    "build": "ng build --configuration production --output-path docs --base-href /kegel-app/",
+    "publish": "angular-cli-ghpages --dir=docs/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "prepare": "husky",
@@ -18,7 +18,6 @@
   "dependencies": {
     "@angular/animations": "^19.0.4",
     "@angular/cdk": "^19.0.3",
-    "@angular/common": "^19.0.4",
     "@angular/compiler": "^19.0.4",
     "@angular/core": "^19.0.4",
     "@angular/forms": "^19.0.4",
@@ -39,6 +38,7 @@
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
     "@types/jasmine": "~4.0.0",
+    "angular-cli-ghpages": "^2.0.3",
     "conventional-changelog-angular": "^8.0.0",
     "husky": "^9.1.7",
     "jasmine-core": "~4.2.0",
