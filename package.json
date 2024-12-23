@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --configuration production",
+    "publish": "angular-cli-ghpages --dir=dist/kegel-app/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "prepare": "husky",
