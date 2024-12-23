@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { CircleComponent } from "./circle/circle.component";
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -17,7 +18,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     BrowserAnimationsModule,
     MatButtonModule,
     MatToolbarModule,
-  ],
+    CircleComponent
+],
   providers: [],
   bootstrap: [AppComponent],
 })

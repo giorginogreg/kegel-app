@@ -1,20 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Status } from '../../enums/status';
 import { Title } from '@angular/platform-browser';
 import * as defaultSerie from '../../assets/series/defaultSerie.json';
 import { Exercise } from '../models/exercise';
 import exercises from '../../assets/exercises.json';
+import { CircleComponent } from '../circle/circle.component';
+
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
+  templateUrl: './home.component.html', 
   styleUrls: ['./home.component.scss'],
   standalone: false,
 })
 export class HomeComponent implements OnInit {
+  
+
   starting = new Audio();
   tick = new Audio();
   counterClass = 'ready';
   counterBtnText = 'Start';
+
   public Status = Status; // For letting the template recognize statuses
 
   state = Status.Ready;
@@ -24,48 +29,61 @@ export class HomeComponent implements OnInit {
   exercises: Exercise[] = [];
   exerciseIndex = 0;
 
-  sleep = (ms: number) => {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  };
 
   constructor(private titleService: Title) {
+    
+  }
+
+  ngOnInit(): void {
+
     // Per ogni esercizio nella defaultSerie mi creo un oggetto esercizio a partire dal codice
     // Carico la defaultSerie
     defaultSerie.exercises.forEach((exercise) => {
       this.exercises.push(this.findExerciseByCode(exercise));
     });
+
   }
 
-  ngOnInit(): void {}
 
-
-  
   async counterBtnClick() {
+    
     switch (this.state) {
       case Status.Ready: {
-        this.state = Status.Starting;
+
+        // If i am ready, i have to do countdown now
         this.counterClass = 'starting';
+        
         //this.starting.play();
         let countdown = 3;
 
-        this.counterBtnText = countdown.toString();
-
-        //let intervalId = setInterval(() => {
         while (countdown > 0) {
           this.counterBtnText = countdown.toString();
           countdown--;
           await this.sleep(1000);
         }
+
+        // Changing status to counting (countdown - 3... 2... 1...)
         this.state = Status.Counting; // Exercise
+
         break;
       }
+
       case Status.Counting: {
         this.currentExercise = this.exercises[this.exerciseIndex];
         this.counterClass = 'counting';
+
         let cycles = this.currentExercise.cycles ?? 1;
-        let remainingSeconds = this.currentExercise.duration ?? this.currentExercise.phases.reduce((partialSum, phase) => partialSum + phase.transition, 0);
-        for (let index = 0; index < cycles; index++) {
+
+        for (let i = 0; i < cycles; i++) {
+          let remainingSeconds =
+            this.currentExercise.duration ??
+            this.currentExercise.phases.reduce(
+              (partialSum, phase) => partialSum + phase.transition,
+              0
+            );
+
           for (const phase of this.currentExercise.phases) {
+            //this.startAnimation(phase.transition * 1000);
 
             while (remainingSeconds > 0) {
               this.counterBtnText = remainingSeconds.toString();
@@ -76,6 +94,7 @@ export class HomeComponent implements OnInit {
             }
           }
         }
+
         this.exerciseIndex++;
         this.state =
           this.exerciseIndex > this.exercises.length
@@ -90,6 +109,7 @@ export class HomeComponent implements OnInit {
         this.counterClass = 'resting';
         let countdown = defaultSerie.defaultRestTime;
         this.currentExercise = null;
+
         while (countdown > 0) {
           await this.sleep(1000);
           countdown--;
@@ -103,8 +123,14 @@ export class HomeComponent implements OnInit {
         break;
       }
     }
-    if (this.state !== Status.Ready) this.counterBtnClick();
+    this.counterBtnClick();
   }
+
+
+  sleep = (ms: number) => {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  };
+
 
   findExerciseByCode(code: string): Exercise {
     const allExercises: Exercise[] = exercises.exercises;

@@ -1,4 +1,9 @@
 {
   "defaultRestTime": 5,
-  "exercises": ["S_H", "FC", "RC", "TB"]
+  "exercises": [ 
+    "FC",
+    "RC",
+    "TB",
+    "S_H"
+  ]
 }

@@ -31,7 +31,7 @@
           "comments": " in mezzo secondo resetto e ricomincio"
         }
       ],
-      "cycles": 3
+      "cycles": 2
     },
     {
       "name": "Reverse Clamp",
@@ -51,7 +51,7 @@
           "comments": " in <transition> secondi raggiunge dal valore preced. il valore <status>"
         }
       ],
-      "cycles": 3
+      "cycles": 2
     },
     {
       "name": "Trembling",
@@ -71,7 +71,7 @@
           "comments": " in <transition> secondi raggiunge dal valore preced. il valore <status>"
         }
       ],
-      "cycles": 15
+      "cycles": 5
     }
   ]
 }
