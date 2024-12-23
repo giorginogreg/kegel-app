@@ -126,7 +126,6 @@ export class HomeComponent implements OnInit {
     this.counterBtnClick();
   }
 
-
   sleep = (ms: number) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
   };
