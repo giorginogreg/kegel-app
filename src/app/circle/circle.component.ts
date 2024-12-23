@@ -1,5 +1,13 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
 import { Status } from 'src/enums/status';
+import { CircleAnimatingService } from '../services/circle-animating.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-circle',
@@ -8,7 +16,7 @@ import { Status } from 'src/enums/status';
   templateUrl: './circle.component.html',
   styleUrl: './circle.component.scss',
 })
-export class CircleComponent {
+export class CircleComponent implements OnInit, OnDestroy {
   @ViewChild('circleCanvas', { static: true })
   canvasRef!: ElementRef<HTMLCanvasElement>;
   @ViewChild('duration') durationRef!: ElementRef<any>;
@@ -26,7 +34,10 @@ export class CircleComponent {
   animationFrame: number;
   isAnimating: boolean;
 
-  constructor() {}
+  private toggleIncreaseSubscription: Subscription;
+  private clearCircleSubscription: Subscription;
+
+  constructor(private sharedService: CircleAnimatingService) {}
 
   ngOnInit() {
     this.canvas = this.canvasRef.nativeElement;
@@ -35,6 +46,19 @@ export class CircleComponent {
 
     this.ctx = this.canvasRef.nativeElement.getContext('2d')!;
     this.currentRadius = this.startRadius;
+
+    this.toggleIncreaseSubscription =
+      this.sharedService.toggleIncrease$.subscribe(
+        (params: { duration: number; shouldGrow: boolean }) => {
+          this.animate(params.duration, params.shouldGrow);
+        }
+      );
+
+    this.clearCircleSubscription = this.sharedService.clearCircle$.subscribe(
+      () => {
+        this.clear();
+      }
+    );
   }
 
   private drawCircle(radius: number): void {
@@ -93,5 +117,10 @@ export class CircleComponent {
     this.canvas.width = this.canvas.width;
     this.canvas.height = this.canvas.height;
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
+
+  ngOnDestroy() {
+    this.toggleIncreaseSubscription.unsubscribe(); // Pulisce la sottoscrizione
+    this.clearCircleSubscription.unsubscribe(); // Pulisce la sottoscrizione
   }
 }
