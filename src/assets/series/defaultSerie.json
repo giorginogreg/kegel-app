@@ -1,15 +1,5 @@
 {
   "defaultRestTime": 5,
-  "exercises": [ 
-    "FC",  
-    "RC",
-    "TB",
-    "S_H"
-  ],
-  "comments": [ 
-  "FC",  
-  "RC",
-  "TB",
-  "S_H"
-]
+  "exercises": ["FC", "S_H", "RC", "TB"],
+  "comments": ["FC", "RC", "TB", "S_H"]
 }

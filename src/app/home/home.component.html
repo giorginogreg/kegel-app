@@ -15,6 +15,9 @@
             <app-circle></app-circle>
             <button mat-fab id="counterBtn" class="counterBtnSize {{counterClass}}" color="accent" (click)="counterBtnClick()">{{ counterBtnText }}</button>
             <div *ngIf="currentExercise; else pending" class="my-3">Exercise name: {{currentExercise.name}}</div>
+            <div *ngIf="currentPhase">{{currentPhase.message || ""}}</div>
+            
+            <div *ngIf="currentExercise?.cycles">Cycle {{currentCycle}} of {{currentExercise?.cycles}}</div>
             <ng-template #pending>
                 <div *ngIf="state == Status.Resting">Resting...
                     <div *ngIf="exerciseIndex <= exercises.length">

@@ -5,6 +5,7 @@ import * as defaultSerie from '../../assets/series/defaultSerie.json';
 import { Exercise } from '../models/exercise';
 import exercises from '../../assets/exercises.json';
 import { CircleAnimatingService } from '../services/circle-animating.service';
+import { Phase } from '../models/phase';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +24,8 @@ export class HomeComponent implements OnInit {
   state = Status.Ready;
 
   currentExercise: Exercise | null;
+  currentPhase: Phase | undefined;
+  currentCycle: number;
 
   exercises: Exercise[] = [];
   exerciseIndex = 0;
@@ -42,6 +45,8 @@ export class HomeComponent implements OnInit {
       case Status.Ready: {
         // If i am ready, i have to do countdown now
         this.counterClass = 'starting';
+
+        this.currentPhase = undefined;
 
         //this.starting.play();
         let countdown = 3;
@@ -65,27 +70,35 @@ export class HomeComponent implements OnInit {
         let cycles = this.currentExercise.cycles ?? 1;
 
         for (let i = 0; i < cycles; i++) {
-          //let remainingSeconds =
-          //  this.currentExercise.duration ??
-          //  this.currentExercise.phases.reduce(
-          //    (partialSum, phase) => partialSum + phase.transition,
-          //    0
-          //  );
+          this.currentCycle = i + 1;
+          let remainingSeconds =
+            this.currentExercise.duration ??
+            this.currentExercise.phases.reduce(
+              (partialSum, phase) => partialSum + phase.transition,
+              0
+            );
+          remainingSeconds = remainingSeconds * 1000;
 
-          for (const phase of this.currentExercise.phases) {
-            //this.startAnimation(phase.transition * 1000);
-            let remainingSeconds = phase.transition;
-            this.sharedService.toggleIncrease({
-              duration: phase.transition * 1000,
-              shouldGrow: phase.status === 100,
-            });
+          while (remainingSeconds > 0) {
+            for (const phase of this.currentExercise.phases) {
+              this.currentPhase = phase;
+              let millisecondsGone = 0;
 
-            while (remainingSeconds > 0) {
-              this.counterBtnText = remainingSeconds.toString();
-              await this.sleep(1000);
+              this.sharedService.toggleIncrease({
+                duration: phase.transition * 1000,
+                shouldGrow: phase.status === 100,
+              });
 
-              // Attende 1 sec, poi...
-              remainingSeconds--;
+              while (millisecondsGone < phase.transition * 1000) {
+                this.counterBtnText = Math.trunc(
+                  remainingSeconds / 1000
+                ).toString();
+                await this.sleep(100);
+                millisecondsGone += 100;
+
+                // Attende 1 sec, poi...
+                remainingSeconds -= 100;
+              }
             }
           }
         }
@@ -100,6 +113,8 @@ export class HomeComponent implements OnInit {
         break;
       }
       case Status.Resting: {
+        this.currentPhase = undefined;
+
         this.counterBtnText = defaultSerie.defaultRestTime.toString();
         this.counterClass = 'resting';
         let countdown = defaultSerie.defaultRestTime;

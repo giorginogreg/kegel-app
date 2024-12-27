@@ -21,7 +21,7 @@
         {
           "message": "Squeeze slowly",
           "status": 100,
-          "transition": 4.5,
+          "transition": 3,
           "comments": " in 5 secondi raggiunge dal valore preced. il valore 100"
         },
         {
@@ -31,7 +31,7 @@
           "comments": " in mezzo secondo resetto e ricomincio"
         }
       ],
-      "cycles": 5
+      "cycles": 10
     },
     {
       "name": "Reverse Clamp",
@@ -47,11 +47,11 @@
         {
           "message": "Relax slowly",
           "status": 0,
-          "transition": 4.5,
+          "transition": 3,
           "comments": " in <transition> secondi raggiunge dal valore preced. il valore <status>"
         }
       ],
-      "cycles": 5
+      "cycles": 10
     },
     {
       "name": "Trembling",
@@ -61,17 +61,17 @@
         {
           "message": "Contract",
           "status": 100,
-          "transition": 1,
+          "transition": 0.5,
           "comments": " in <transition> secondi raggiunge dal valore preced. il valore <status>"
         },
         {
           "message": "Relax",
           "status": 0,
-          "transition": 1,
+          "transition": 0.5,
           "comments": " in <transition> secondi raggiunge dal valore preced. il valore <status>"
         }
       ],
-      "cycles": 5
+      "cycles": 25
     }
   ]
 }
