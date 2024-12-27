@@ -6,5 +6,11 @@
   "dir": "auto",
   "lang": "it-IT",
   "name": "Kegel exercises",
-  "short_name": "Kegel-app"
+  "short_name": "Kegel-app",
+  "permissions": {
+    "desktop-notification": {
+      "description": "Needed for creating system notifications."
+    }
+  },
+  "gcm_sender_id": "9827596791"
 }
