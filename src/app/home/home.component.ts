@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Status } from '../../enums/status';
 import { Title } from '@angular/platform-browser';
 import * as defaultSerie from '../../assets/series/defaultSerie.json';
@@ -27,10 +27,7 @@ export class HomeComponent implements OnInit {
   exercises: Exercise[] = [];
   exerciseIndex = 0;
 
-  constructor(
-    private titleService: Title,
-    private sharedService: CircleAnimatingService
-  ) {}
+  private sharedService = inject(CircleAnimatingService);
 
   ngOnInit(): void {
     // Per ogni esercizio nella defaultSerie mi creo un oggetto esercizio a partire dal codice
