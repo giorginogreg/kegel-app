@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1735313285679,
+  "timestamp": 1735319211561,
   "index": "/kegel-app/index.html",
   "assetGroups": [
     {
@@ -12,9 +12,8 @@
       },
       "urls": [
         "/kegel-app/favicon.ico",
-        "/kegel-app/firebase-messaging-sw.js",
         "/kegel-app/index.html",
-        "/kegel-app/main-HGDMZ3AA.js",
+        "/kegel-app/main-6J23PHN2.js",
         "/kegel-app/manifest.webmanifest",
         "/kegel-app/polyfills-EONH2QZO.js",
         "/kegel-app/styles-UGAGV4NW.css"
@@ -35,10 +34,9 @@
   "dataGroups": [],
   "hashTable": {
     "/kegel-app/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/kegel-app/firebase-messaging-sw.js": "69aa45d2368fa33f22ddd08816b43f2af9c54a65",
-    "/kegel-app/index.html": "648629e561f8d2b08badaa933f1381561186d4e2",
-    "/kegel-app/main-HGDMZ3AA.js": "292cb1c52b16afd31a27b116601b8881088c4c2b",
-    "/kegel-app/manifest.webmanifest": "98bb76d2f4f2088f16f4be9779641ecad1a1b314",
+    "/kegel-app/index.html": "6271eb1f48b684c615ab3007aeab8c9cd6347847",
+    "/kegel-app/main-6J23PHN2.js": "af58e2ce6936243ae6e161c27942a96735405eac",
+    "/kegel-app/manifest.webmanifest": "f42462c5efbb42464e27eeec6803874cbfd57b86",
     "/kegel-app/polyfills-EONH2QZO.js": "e61db933651ae257d0c246b446cd1f470be08f78",
     "/kegel-app/styles-UGAGV4NW.css": "603e7d66fb06b7591dca3785bc9d053fcb520bbf"
   },
