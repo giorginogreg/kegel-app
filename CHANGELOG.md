@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/giorginogreg/Kegel-app/compare/v2.0.0...v2.1.0) (2024-12-27)
+
+
+### Features
+
+* added messages and fixed timing ([a7d6399](https://github.com/giorginogreg/Kegel-app/commit/a7d639962ff4f39c94a48c69892afe54a11ac668))
+
+
+### Documentation
+
+* improved build command ([ddfccda](https://github.com/giorginogreg/Kegel-app/commit/ddfccdaaf240c5666f05c6ebdcf10b9f1d6a97f3))
+
 ## 2.0.0 (2024-12-23)
 
 

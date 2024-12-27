@@ -1,6 +1,6 @@
 {
   "name": "kegel-app",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -50,9 +50,5 @@
     "standard-version": "^9.5.0",
     "typescript": "5.6.3"
   },
-  "standard-version": {
-    "skip": {
-      "tag": false
-    }
-  }
+  "standard-version": {}
 }
