@@ -3,6 +3,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 19.0.5
 
 ## Install dependencies
+
 First step first: run `npm i` to install deps
 
 ## Development server
@@ -28,3 +29,13 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+---
+
+# Enable service worker locally
+
+To enable service worker support during local development, use the production configuration with the following command:
+
+ng serve --prod
+or
+ng serve -c production
